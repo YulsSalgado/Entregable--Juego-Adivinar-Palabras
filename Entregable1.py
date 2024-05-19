@@ -18,16 +18,19 @@ def juego_esquema():
     while intentos > 0: #Necesita un bucle, while?
         print(f"La palabra a adivinar es: {palabra_adivinada}")#No muestra los guiones
         print (f"Letras intentadas: {letras_intentadas}")
-        print (f"Te quedan {intentos} intentos") 
-        break       
+        print (f"Te quedan {intentos} intentos")    
         
-    letra_escogida == 1 and "a" <= letra_escogida <= "z"
     letra_escogida = input(f"Ingrese la letra escogida: ").lower
-        
-    if letra_escogida == "palabra":
-        print(f"Felicidades. Aún te quedan ?palabras por adivinar")
-    else:
-        print("Intenta con una nueva letra")
+    
+    if letra_escogida == 1 and "a" <= letra_escogida <= "z":
+        if letra_escogida in letras_intentadas:
+            print("Ya intentaste con esa letra")
+        if letra_escogida in palabra:
+            print(f"Felicidades, adivinaste una letra. Aún te quedan {intentos} por adivinar")
+        else: 
+            letras_intentadas.append(letra_escogida)
+            print("Intenta con una nueva letra")
+    
 
 juego_esquema()
 
