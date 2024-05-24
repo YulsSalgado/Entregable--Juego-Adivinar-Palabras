@@ -15,7 +15,7 @@ def juego_esquema():
 
     print("¡Bienvenido al juego del ahorcado!")
 
-    while intentos > 0: #Necesita un bucle, while?
+    while intentos >= 0: #Necesita un bucle, while?
         print(f"La palabra a adivinar es: {palabra_adivinada}")#No muestra los guiones
         print (f"Letras intentadas: {letras_intentadas}")
         print (f"Te quedan {intentos} intentos")    
@@ -30,7 +30,9 @@ def juego_esquema():
         else: 
             letras_intentadas.append(letra_escogida)
             print("Intenta con una nueva letra")
-    
 
-juego_esquema()
+print("Prueba while")    
+
+juego_esquema() 
+#Sigue andando el bucle while de forma infinita, pero no marca error como ayer
 
