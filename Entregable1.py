@@ -25,6 +25,7 @@ def juego_esquema():
         print("Muchas gracias por su respuesta")
         nombre_usuario = str(input("Por favor ingrese su nombre: ")).capitalize()
         print(f"¡Bienvenidx al juego, {nombre_usuario}!")
+        
     else:
         print("Ni modo")
     
@@ -49,5 +50,6 @@ def juego_esquema():
             print("Intenta con una nueva letra")
 
 juego_esquema() 
-#Sigue andando el bucle while de forma infinita, pero no marca error como ayer
 
+print("\033[4;;47m" + "Esto es una prueba de color" + "\033[0;m") #Video de youtube
+#La extensión de emojis no funcionó, borrar
