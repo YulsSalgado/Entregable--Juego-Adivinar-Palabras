@@ -31,7 +31,7 @@ def juego_esquema():
     intentos = len(palabra) - 1
     letras_intentadas = []
     aciertos = 0
-    palabra_adivinada = ["_"] * len(palabra) 
+    palabra_adivinar = ["_"] * len(palabra) 
 
     print ("=============================================================================")
     print("\033[4;;47m" + "~~~~~~~~¡Bienvenido al juego de adivina la palabra! 👩‍💻~~~~~~~~" + "\033[0;m")
@@ -68,28 +68,44 @@ def juego_esquema():
         # ??? No tiene sentido
     #aciertos no son iguales a len(palabra) al inicio    
 
-    while intentos > 0 and "_" in palabra_adivinada:
+    while intentos > 0 and "_" in palabra_adivinar:
         print(f"Tienes {intentos} intentos en esta ronda")
-        print(f"La palabra a adivinar es: {palabra_adivinada}") 
-        print(f"Tus aciertos contabilizados son: {aciertos}")
+        print(f"La palabra a adivinar es: {palabra_adivinar}") 
         print (f"Letras intentadas: {letras_intentadas}")
 
         if datos_entrada.capitalize() == "Si":
             letra_escogida = str(input(f"Ingrese la letra escogida: ")).lower()
             print("\n")
 
-#Letra escogida es igual a 1, pero su len no
-        if len(letra_escogida) != 1 and 'a' <= letra_escogida <= 'z':
+#Letra escogida es igual a 1, pero su len no ( si estaba bien :p)
+        if len(letra_escogida) == 1 and 'a' <= letra_escogida <= 'z':
 
             if letra_escogida in letras_intentadas:
-                print("Ya intentaste esa letra.")
+                print("Ya intentaste esa letra.\n")
             else: 
                 letras_intentadas.append(letra_escogida)
                 if letra_escogida in palabra:
-                    print(f"Felicidades, adivinaste una letra :) ")
+                    #Se debe actualizar el esquema, iterar
+                    for i in range(len(palabra)):
+                        if palabra[i] == letra_escogida:
+                            palabra_adivinar[i] = letra_escogida #Indice de la palabra a adivinar sea igual a l_e
+                    print(f"Felicidades, adivinaste una letra :) \n")
                     aciertos += 1
                 elif letra_escogida not in palabra:
-                    print("Lo siento. Letra incorrecta :( ")
+                    print("Lo siento. Letra incorrecta :( \n")
                     intentos -= 1
+        
+        else:
+            print("Por favor, ingrese una única letra válida.\n")
+
+    if "_" not in palabra_adivinar:
+        print("                        ¡JUEGO TERMINADO!\n                            ")
+        print("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
+        print(f"¡Felicidades {nombre_usuario}!. Tu puntuación fue de {aciertos} puntos.")
+        print("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
+    else: 
+        print("=========================== ¡JUEGO TERMINADO! ==========================")
+        print(f"Bueno {nombre_usuario}, la vida es triste. Tus aciertos fueron: {aciertos}")
+        print("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
 
 juego_esquema() 
