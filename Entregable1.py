@@ -30,7 +30,7 @@ def juego_esquema():
     palabra = escoger_palabras()
     intentos = len(palabra) - 1
     letras_intentadas = []
-    aciertos = []
+    aciertos = 0
     palabra_adivinada = ["_"] * len(palabra) 
 
     print ("=============================================================================")
@@ -46,40 +46,50 @@ def juego_esquema():
         try:
             datos_entrada = (str(input("¿Te gustaría jugar (Si / No): ")).capitalize()).strip() #Eliminar espacios, anticipar fallas
             if datos_entrada.capitalize() not in ["Si", "No"]:
-                raise ValueError ("Solo puedes elegir Sí o no 🙄")
+                raise ValueError ("Solo puedes elegir Sí o no 🙄\n")
             
             if datos_entrada.capitalize() == "Si":
                 print("Muchas gracias por su respuesta")
                 nombre_usuario = str(input("Por favor ingrese su nombre: ")).capitalize()
-                print(f"¡Bienvenidx al juego, {nombre_usuario}!")
-                print(f"La palabra a adivinar es: {palabra_adivinada}") 
+                print(f"¡Bienvenidx al juego, {nombre_usuario}!\n")
                 break
 
             else:
-                print("Gracias por participar. ¡Esperamos te animes a una próxima!")
+                print("Gracias por participar. ¡Esperamos te animes a una próxima!\n")
                 return
 
         except ValueError as e:
             print(e)
             
-     
+    print("=============================================================================")
+    print("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ¡Juego iniciado!😃 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
+    print("=============================================================================" + "\n")
     #while intentos >= 0 and datos_entrada == "Si":
         # ??? No tiene sentido
-    if datos_entrada == "Si":
-        letra_escogida = str(input(f"Ingrese la letra escogida: ")).lower()
+    #aciertos no son iguales a len(palabra) al inicio    
 
-    while intentos >= 0 and aciertos == len(palabra):
+    while intentos > 0 and "_" in palabra_adivinada:
+        print(f"Tienes {intentos} intentos en esta ronda")
+        print(f"La palabra a adivinar es: {palabra_adivinada}") 
+        print(f"Tus aciertos contabilizados son: {aciertos}")
         print (f"Letras intentadas: {letras_intentadas}")
-        print (f"Te quedan {intentos} intentos")    
 
-        if len(letra_escogida) == 1 and 'a' <= letra_escogida <= 'z':
+        if datos_entrada.capitalize() == "Si":
+            letra_escogida = str(input(f"Ingrese la letra escogida: ")).lower()
+            print("\n")
+
+#Letra escogida es igual a 1, pero su len no
+        if len(letra_escogida) != 1 and 'a' <= letra_escogida <= 'z':
+
             if letra_escogida in letras_intentadas:
                 print("Ya intentaste esa letra.")
-            elif letra_escogida in palabra:
-                print(f"Felicidades, adivinaste una letra. Aún te quedan {intentos} por adivinar")
-                aciertos =+ 1
-        else: 
-            letras_intentadas.append(letra_escogida)
-            print("Intenta con una nueva letra")
+            else: 
+                letras_intentadas.append(letra_escogida)
+                if letra_escogida in palabra:
+                    print(f"Felicidades, adivinaste una letra :) ")
+                    aciertos += 1
+                elif letra_escogida not in palabra:
+                    print("Lo siento. Letra incorrecta :( ")
+                    intentos -= 1
 
 juego_esquema() 
