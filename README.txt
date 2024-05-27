@@ -1,6 +1,6 @@
 Hola :) ¿Qué tal?
 
-¡Bienvenido al juego de adivina la palabra! 👩‍💻
+¡Bienvenidx al juego de adivina la palabra! 👩‍💻
    
 Simulación del clásico juego del 'Ahorcado', donde se dispone de varios intentos para adivinar la palabra aleatoria.
 

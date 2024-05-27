@@ -1,5 +1,4 @@
 import random 
-
 def dibujo_juego():
     dibujo = [""""
                ------
@@ -22,14 +21,24 @@ def escoger_palabras():
     Returns: 
     str: Una palabra random desde una lista predefinida de palabras.
     """
-    palabras = ['python', 'programacion', 'ahorcado', 'entregable', 'funciones']
+    palabras = ['python', 'programacion', 'ahorcado', 'entregable', 'funciones', 'libertad', 'casa', 'helicoptero']
     return palabras[random.randint(0, len(palabras)  - 1)]
 
 def juego_esquema():
+    """
+    Función principal del código que simula el juego del 'Ahorcado'.
+    Dos bucles while para seguimiento: datos de entrada y secuencias.
+
+    Párametros: 
+    None
+
+    Returns: Mensajes de datos de entrada.
+    """
     palabra = escoger_palabras()
     intentos = len(palabra) - 1
     letras_intentadas = []
     aciertos = 0
+    palabra_acierto = palabra
     palabra_adivinar = ["_"] * len(palabra) 
 
     print ("=============================================================================")
@@ -53,8 +62,9 @@ def juego_esquema():
                 print(f"¡Bienvenidx al juego, {nombre_usuario}!\n")
                 break
 
-            if datos_entrada.capitalize() == "No":
+            else: 
                 print("Gracias por participar. ¡Esperamos te animes a una próxima!\n")
+                input("Presiona Enter para salir...")
                 return
 
         except ValueError as e:
@@ -97,14 +107,16 @@ def juego_esquema():
         print("                        ¡JUEGO TERMINADO!\n                            ")
         print("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
         print(f"¡Felicidades {nombre_usuario}!. Tu puntuación fue de {aciertos} puntos.")
+        print(f"La palabra para adivinar era: {palabra}")
         print("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
     else: 
         print("                        ¡JUEGO TERMINADO!\n                            ")
         print("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
         print(f"Bueno {nombre_usuario}, la vida es triste. Tus aciertos fueron: {aciertos}")
+        print(f"La palabra para adivinar era: {palabra}")
         print("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
 
-    # El juego se cierra en el zip y no da tiempo de leer los mensajes de finalización. Arreglar
+    input("Presiona Enter para salir...")
 
 juego_esquema() 
 
